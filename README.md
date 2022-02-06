@@ -9,7 +9,7 @@
 
 ## App Description 
 
-The app will be 
+The app will be used to help users find, save, and edit recipes. 
 
 ## API Info
 
