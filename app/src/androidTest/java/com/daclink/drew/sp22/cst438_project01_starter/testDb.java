@@ -23,6 +23,10 @@ public class testDb {
 
 //    public static final String TAG = "Junit";
 
+    /**
+     * Simple unit test to compare users that have been put into the DB. Essentially makes sure
+     * users are being stored and retrieved properly
+     */
     @Test
     public void compareUserTest(){
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -56,6 +60,13 @@ public class testDb {
 //        Log.i(TAG, "closeDb: ");
 //    }
 
+    /**
+     * Unit test to validate that inserting a user that already exists will overwrite the existing
+     * data for that user. Test is done by creating a new user, inserting them into the DB, then
+     * checking that the original username is the same as whats stored in the DB. Then the username
+     * is changed and the values are compared again to make sure they are different to validate
+     * replacement worked
+     */
     @Test
     public void userReplaceTest(){
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -75,6 +86,11 @@ public class testDb {
 
     }
 
+    /**
+     * Test to make sure that the delete user function works. A user is made, inserted into DB,
+     * checked to make sure they exist, deleted from DB, and finally checked to make sure they dont
+     * exist anymore
+     */
     @Test
     public void userDeleteTest(){
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -91,21 +107,4 @@ public class testDb {
         assertNull(testDB.getUserById(1));
     }
 
-    @Test //Check size of user list
-    public void validateSampleUserNum(){
-//        mUserDao.insert(testUserOne, testUserTwo, testUserThree);
-//        int count =  mUserDao.getCount();
-//        Log.i(TAG, "validateSampleUserNum: Count=" + count);
-//        assertEquals(SampleUsers.getUsers().size(), count);
-    }
-
-    @Test //check usernames and passwords
-    public void validateSampleUserInfo(){
-//        mUserDao.insertAllUsers(SampleUsers.getUsers());
-//        UserEntity original = SampleUsers.getUsers().get(0);
-//        UserEntity fromDB = mUserDao.getUserById(1);
-//
-//        assertEquals(original.getRecipeCount(), fromDB.getRecipeCount());
-//        assertEquals(1, fromDB.getId());
-    }
 }
