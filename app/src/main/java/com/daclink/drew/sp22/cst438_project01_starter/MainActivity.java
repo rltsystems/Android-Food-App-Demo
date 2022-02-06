@@ -2,6 +2,8 @@ package com.daclink.drew.sp22.cst438_project01_starter;
 
 import android.os.Bundle;
 
+import com.daclink.drew.sp22.cst438_project01_starter.Api.EdamamApi;
+import com.daclink.drew.sp22.cst438_project01_starter.Api.Post;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
