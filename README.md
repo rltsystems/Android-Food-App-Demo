@@ -17,9 +17,7 @@ The foodora app allows users to find, save, and edit recipes, as well as publish
 ## API Info
 
 We will be using the [Edamam API](https://developer.edamam.com/edamam-docs-recipe-api). to search for Recipes
-
+The Edamam B2B API is accessed by sending HTTPS requests on specific URLs. The Edamam Recipe Search API allows us to search through millions of web recipes and integrate this information into our app.
 ## Resources 
 - API [Link](https://developer.edamam.com/edamam-docs-recipe-api).
 
-## App Workflow
-<work in progress>
