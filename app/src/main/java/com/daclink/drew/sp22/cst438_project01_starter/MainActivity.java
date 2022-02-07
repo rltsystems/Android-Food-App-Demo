@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    // API TESTING
+    //API TESTING
     private TextView textViewResult;
+    //API TESTING
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,26 +59,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // API TESTING
+        // --------------------API TESTING-----------------------------
+
+        textViewResult = findViewById(R.id.text_view_result);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        EdamamApi EdamamApi = retrofit.create(EdamamApi.class);
+        EdamamApi edamamApi = retrofit.create(EdamamApi.class);
 
-        Call<List<Post>> call = EdamamApi.getPosts();
+        Call<List<Post>> call = edamamApi.getPosts();
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
-            }
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code: " + response.code());
+                    return;
+                }
 
+                List<Post> posts = response.body();
+
+                for (Post post : posts) {
+                    String content = "";
+                    content += "ID: " + post.getId() + "\n";
+                    content += "User ID: " + post.getUserId() + "\n";
+                    content += "Title: " + post.getTitle() + "\n";
+                    content += "Text: " + post.getBody() + "\n\n";
+
+                    textViewResult.append(content);
+                }
+            }
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-
-
+                textViewResult.setText(t.getMessage());
             }
         });
 

@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 
 public interface EdamamApi {
 
-    //Tests
+    // Tests
     @GET("posts")
     Call<List<Post>> getPosts();
 }
