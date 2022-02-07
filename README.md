@@ -21,5 +21,3 @@ We will be using the [Edamam API](https://developer.edamam.com/edamam-docs-recip
 ## Resources 
 - API [Link](https://developer.edamam.com/edamam-docs-recipe-api).
 
-## App Workflow
-<work in progress>
