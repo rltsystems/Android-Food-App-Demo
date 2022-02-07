@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    //API TESTING
-    private TextView textViewResult;
-    //API TESTING
+    //---API TESTING ONLY---
+    // private TextView textViewResult;
+    //---API TESTING ONLY---
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +59,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // --------------------API TESTING-----------------------------
+    }
 
-        textViewResult = findViewById(R.id.text_view_result);
+    /**
+     * Basic API call using Retrofit, only takes in a text query for now. Will probably move this
+     * and many related functions (damn java for not having default params) to its own class later.
+     * Currently all output is disabled for stability.
+     * @param query the text to search the API database with.
+     */
+    public void callApi(String query){
+        //textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("https://api.edamam.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         EdamamApi edamamApi = retrofit.create(EdamamApi.class);
 
-        Call<List<Post>> call = edamamApi.getPosts();
+        Call<List<Post>> call = edamamApi.getPosts(query);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+                    //textViewResult.setText("Code: " + response.code());
                     return;
                 }
 
@@ -85,22 +92,21 @@ public class MainActivity extends AppCompatActivity {
 
                 for (Post post : posts) {
                     String content = "";
-                    content += "ID: " + post.getId() + "\n";
-                    content += "User ID: " + post.getUserId() + "\n";
-                    content += "Title: " + post.getTitle() + "\n";
-                    content += "Text: " + post.getBody() + "\n\n";
+                    content += "Label: " + post.getLabel() + "\n";
+                    content += "Calories: " + post.getCalories() + "\n";
+                    content += "Cuisine Type: " + post.getCuisineType() + "\n";
+                    content += "Text: " + post.getMealType() + "\n\n";
 
-                    textViewResult.append(content);
+                    //textViewResult.append(content);
                 }
             }
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
+                //textViewResult.setText(t.getMessage());
             }
         });
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
