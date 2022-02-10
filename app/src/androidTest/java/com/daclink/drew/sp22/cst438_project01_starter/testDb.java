@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import android.content.Context;
+import android.os.Looper;
 
 import androidx.room.Room;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -14,6 +15,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.daclink.drew.sp22.cst438_project01_starter.db.AppDatabase;
 import com.daclink.drew.sp22.cst438_project01_starter.db.User;
 import com.daclink.drew.sp22.cst438_project01_starter.db.UserDao;
+import com.daclink.drew.sp22.cst438_project01_starter.CreateAccount;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -105,6 +107,24 @@ public class testDb {
 
         testDB.deleteUser(user);
         assertNull(testDB.getUserById(1));
+    }
+
+    @Test
+    public void createAccountTest(){
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        UserDao testDB = Room.inMemoryDatabaseBuilder(context,AppDatabase.class)
+                .build()
+                .getUserDao();
+
+//        CreateAccount createAccount = new CreateAccount();
+
+        User user = new User(1, "Test","1234",12);
+        assertNull(testDB.getUserByUsername("Test"));
+
+        testDB.insert(user);
+//        createAccount.createUser("Test","1234");
+
+        assertNotNull(testDB.getUserByUsername("Test"));
     }
 
 }

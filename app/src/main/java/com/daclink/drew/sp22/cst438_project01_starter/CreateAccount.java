@@ -28,6 +28,8 @@ public class CreateAccount extends AppCompatActivity {
         binding = ActivityCreateAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getDatabase();
+
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,8 +37,8 @@ public class CreateAccount extends AppCompatActivity {
                 password = binding.editTextPassword.toString();
                 passwordConfirm = binding.editTextPasswordConfirm.toString();
 
-                if (verifyAccount()){
-                    createUser();
+                if (verifyAccount(username, password)){
+                    createUser(username, password);
                 }
             }
         });
@@ -47,7 +49,7 @@ public class CreateAccount extends AppCompatActivity {
      * Also checks to make password fields match
      * @return boolean Returns if account is unique and passwords match
      */
-    private boolean verifyAccount(){
+    private boolean verifyAccount(String username, String password){
         User user = userDao.getUserByUsername(username);
         if (user != null){
             Toast.makeText(this, "Account with username " + username + " already exists", Toast.LENGTH_SHORT).show();
@@ -61,7 +63,7 @@ public class CreateAccount extends AppCompatActivity {
         return true;
     }
 
-    private void createUser(){
+    public void createUser(String username, String password){
         User user = new User(username, password);
         userDao.insert(user);
     }
