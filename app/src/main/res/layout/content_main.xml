@@ -1,19 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <fragment
-        android:id="@+id/nav_host_fragment_content_main"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="312dp"
+        android:layout_height="58dp"
+        android:text="Disclaimer: This app was created by Group 5 for CST438 at CSUMB. App and developers has no relation to Foodora inc. and is fictitious."
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="657dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="433dp"
+        android:layout_height="592dp"
+        app:srcCompat="@drawable/foodora_logos_transparent"
+        tools:layout_editor_absoluteX="-11dp"
+        tools:layout_editor_absoluteY="-13dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="login"
+        android:text="Login"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="482dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="437dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="421dp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="376dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="356dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="482dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
