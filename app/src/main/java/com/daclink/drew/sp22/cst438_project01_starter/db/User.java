@@ -35,6 +35,12 @@ public class User {
         this.recipeCount = recipeCount;
     }
 
+    @Ignore
+    public User(String username, String pass){
+        this.username = username;
+        this.pass = pass;
+    }
+
     public int getId() {
         return id;
     }
