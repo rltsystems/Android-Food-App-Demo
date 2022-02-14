@@ -1,5 +1,6 @@
 package com.daclink.drew.sp22.cst438_project01_starter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.daclink.drew.sp22.cst438_project01_starter.Api.EdamamApi;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Temporary intent just to test Create/Modify Account
+        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+        startActivity(intent);
 
         setSupportActionBar(binding.toolbar);
 
