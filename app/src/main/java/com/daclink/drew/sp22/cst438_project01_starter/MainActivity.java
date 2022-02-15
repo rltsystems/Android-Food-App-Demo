@@ -56,23 +56,17 @@ public class MainActivity extends AppCompatActivity {
 //        user.setUsername(name.getText().toString());
 //
 //    }
-
+/*
+* createAccount(View v)
+* Method for creating account and inputting user input information into user DB
+*
+*
+*/
     public void createAccount(View v){
-
-        user.setUsername("Testing");
-        user.setPass("Purposes");
-
         //For when the actual text boxes can be typed in
-//        user.setUsername(name.getText().toString());
-//        user.setPass(pass.getText().toString());
+         user.setUsername(name.getText().toString());
+         user.setPass(pass.getText().toString());
+         mUserDAO.insert(user);
 
-        user.setId(8888);
-        user.setRecipeCount(0);
-
-        mUserDAO.insert(user);
-//Test cases to see if the database is storing and returning correct data
-        Toast.makeText(this, mUserDAO.getUserById(8888).getUsername() + " " + mUserDAO.getUserById(8888).getPass() +
-                " " + mUserDAO.getUserById(8888).getId() + " " + mUserDAO.getUserById(8888).getRecipeCount(), Toast.LENGTH_SHORT).show();
     }
-
 }
