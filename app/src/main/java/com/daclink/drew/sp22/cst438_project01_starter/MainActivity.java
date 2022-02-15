@@ -2,6 +2,10 @@ package com.daclink.drew.sp22.cst438_project01_starter;
 
 import android.os.Bundle;
 
+import com.daclink.drew.sp22.cst438_project01_starter.Api.EdamamApi;
+import com.daclink.drew.sp22.cst438_project01_starter.Api.Post;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +22,12 @@ import com.daclink.drew.sp22.cst438_project01_starter.db.UserDao;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
