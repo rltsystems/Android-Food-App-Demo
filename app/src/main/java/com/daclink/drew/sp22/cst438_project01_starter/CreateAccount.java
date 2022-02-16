@@ -33,9 +33,9 @@ public class CreateAccount extends AppCompatActivity {
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                username = binding.editTextUsername.toString();
-                password = binding.editTextPassword.toString();
-                passwordConfirm = binding.editTextPasswordConfirm.toString();
+                username = binding.editTextUsername.getText().toString();
+                password = binding.editTextPassword.getText().toString();
+                passwordConfirm = binding.editTextPasswordConfirm.getText().toString();
 
                 if (verifyAccount(username, password)){
                     createUser(username, password);
