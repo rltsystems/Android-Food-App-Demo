@@ -41,7 +41,7 @@ public class ModifyAccount extends AppCompatActivity {
         binding.submitUserChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                username = binding.newUsername.getText().toString();
+                //username = binding.newUsername.getText().toString();
                 password = binding.newPassword.getText().toString();
                 passwordConfirm = binding.confirmNewPassword.getText().toString();
 
@@ -96,7 +96,7 @@ public class ModifyAccount extends AppCompatActivity {
     }
 
     public void updateUser(){
-        user.setUsername(username);
+        //user.setUsername(username);
         user.setPass(password);
         userDao.insert(user);
     }
