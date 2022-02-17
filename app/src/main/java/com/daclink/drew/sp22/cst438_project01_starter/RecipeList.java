@@ -79,15 +79,12 @@ public class RecipeList extends AppCompatActivity {
             }
         });
 
-        TextInputEditText keywordEditText = binding.foodQueryBox;
         Button addRecipe = binding.addRecipeBtn;
-
-        String keyword = keywordEditText.getEditableText().toString();
 
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchRecipes("keyword");
+                searchRecipes();
             }
         });
     }
@@ -119,7 +116,9 @@ public class RecipeList extends AppCompatActivity {
         userDao.insert(user);
     }
 
-    public void searchRecipes(String query){
+    public void searchRecipes(){
+        TextInputEditText keywordEditText = binding.foodQueryBox;
+        String keyword = keywordEditText.getEditableText().toString();
         int SEARCH_RESULT_LIMIT = 20;
         ApiKey keyboi = new ApiKey();
         String recipeSearchBaseString = "https://api.spoonacular.com";
@@ -139,7 +138,7 @@ public class RecipeList extends AppCompatActivity {
 
         spoonSearch = retrofit.create(SpoontacularSearchAPI.class);
 
-        Call<RecipeResponse> call = spoonSearch.getRecipes(query, keyboi.getKey(),
+        Call<RecipeResponse> call = spoonSearch.getRecipes(keyword, keyboi.getKey(),
                 true, SEARCH_RESULT_LIMIT);
 
         call.enqueue(new Callback<RecipeResponse>(){

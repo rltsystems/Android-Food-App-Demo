@@ -6,9 +6,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.daclink.drew.sp22.cst438_project01_starter.Api.Result;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
+/**
+ * A class which holds all recipe information for local use
+ */
 
 @Entity(tableName = "recipes")
 public class Recipe {
@@ -27,6 +28,8 @@ public class Recipe {
     public String sourceName;
     public String sourceUrl;
     private String instructions;
+    private int readyInMinutes;
+    private int servings;
 
 
     public Recipe(String recipeName, Double totalCalories, String recipeDescription) {
@@ -46,6 +49,8 @@ public class Recipe {
         this.sourceUrl = searchresult.getSourceUrl();
         this.sourceName = searchresult.getSourceName();
         this.instructions = searchresult.getInstructions();
+        this.readyInMinutes = searchresult.getReadyInMinutes();
+        this.servings = searchresult.getServings();
     }
 
     public int getRecipeId() {
@@ -97,7 +102,9 @@ public class Recipe {
     }
 
     public String displayRecipeBar(){
-        return (this.recipeName + "\n\nSource: " + this.sourceName + "\n\n" + this.sourceUrl);
+        return (this.recipeName + "\n\nServings: " + this.servings + "   |   Ready in " +
+                this.readyInMinutes + " minutes" + "\n\nFrom: " + this.sourceName +
+                "\n\nGet the Full Recipe:\n " + this.sourceUrl);
     }
 
     public String displayRecipeDescripInstruct(){
@@ -110,5 +117,69 @@ public class Recipe {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCarbs() {
+        return carbs;
+    }
+
+    public String getFat() {
+        return fat;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public String getProtein() {
+        return protein;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public int getReadyInMinutes() {
+        return readyInMinutes;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setCarbs(String carbs) {
+        this.carbs = carbs;
+    }
+
+    public void setFat(String fat) {
+        this.fat = fat;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public void setProtein(String protein) {
+        this.protein = protein;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public void setReadyInMinutes(int readyInMinutes) {
+        this.readyInMinutes = readyInMinutes;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
 }

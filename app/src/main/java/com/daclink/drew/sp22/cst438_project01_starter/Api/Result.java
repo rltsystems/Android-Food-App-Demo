@@ -1,8 +1,11 @@
 package com.daclink.drew.sp22.cst438_project01_starter.Api;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+/**
+ * A class to hold the data for a single recipe from the Spoontacular API json
+ */
 
 public class Result {
 
@@ -42,6 +45,12 @@ public class Result {
     @SerializedName("instructions")
     @Expose
     public String instructions;
+    @SerializedName("readyInMinutes")
+    @Expose
+    public int readyInMinutes;
+    @SerializedName("servings")
+    @Expose
+    public int servings;
 
     public int getId() {
         return id;
@@ -121,6 +130,14 @@ public class Result {
 
     public String getInstructions() {
         return instructions;
+    }
+
+    public int getReadyInMinutes() {
+        return readyInMinutes;
+    }
+
+    public int getServings() {
+        return servings;
     }
 
     @Override

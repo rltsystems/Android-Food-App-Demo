@@ -1,6 +1,8 @@
 package com.daclink.drew.sp22.cst438_project01_starter.Api;
 
-import com.daclink.drew.sp22.cst438_project01_starter.db.Recipe;
+/**
+ * An interface which calls the Spoontacular API for a complex recipe search
+ */
 
 import retrofit2.Call;
 import retrofit2.http.GET;
