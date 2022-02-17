@@ -17,7 +17,7 @@ The foodora app allows users to find, save, and edit recipes, as well as publish
 ## API Info
 
 We will be using the [Spoonacular API](https://spoonacular.com/food-api). to search for Recipes
-The Edamam B2B API is accessed by sending HTTPS requests on specific URLs. The Spoonacular Recipe Search API allows us to search through millions of web recipes and integrate this information into our app.
+The Spoonacular API is accessed by sending HTTPS requests on specific URLs. The Spoonacular Recipe Search API allows us to search through millions of web recipes and integrate this information into our app.
 ## Resources 
 - API [Link](https://spoonacular.com/food-api/docs).
 
