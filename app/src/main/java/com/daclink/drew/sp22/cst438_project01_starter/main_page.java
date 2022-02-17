@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.daclink.drew.sp22.cst438_project01_starter.databinding.FragmentFirstBinding;
 
-public class FirstFragment extends Fragment {
+public class main_page extends Fragment {
 
     private FragmentFirstBinding binding;
 
@@ -26,17 +26,12 @@ public class FirstFragment extends Fragment {
 
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-    }
+    Button button = (Button) findViewById(R.id.login);
+    button.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+            // Do something in response to button click
+        }
+    });
 
     @Override
     public void onDestroyView() {
