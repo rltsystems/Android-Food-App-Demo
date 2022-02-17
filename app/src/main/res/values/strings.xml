@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CST438_Project01_Starter</string>
+    <string name="app_name">Foodora</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

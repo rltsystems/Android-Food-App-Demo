@@ -1,8 +1,10 @@
 package com.daclink.drew.sp22.cst438_project01_starter;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -49,6 +51,26 @@ public class ModifyAccount extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        binding.deleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(ModifyAccount.this);
+                alert.setTitle("Delete Account?");
+                alert.setMessage("Are you sure you want to delete your account?");
+
+                alert.setNegativeButton("Yes, I'm sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        userDao.deleteUser(user);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                alert.setPositiveButton("No", null);
+                alert.show();
             }
         });
     }
