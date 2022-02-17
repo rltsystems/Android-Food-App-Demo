@@ -40,16 +40,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String USER_ID_KEY = "userIdKey";
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    UserDao mUserDAO;
+    UserDao userDao;
     User user = new User();
     Button createAccBtn;
     Button loginBtn;
+    private int userId;
 
-    EditText pass;
-    EditText name;
+    String pass;
+    String name;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,27 +58,54 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.getRoot()
+        getDatabase();
 
     }
 
-        //Button for logging in
-//    public void login(View v){
-//
-//        user.setUsername(name.getText().toString());
-//
-//    }
-/*
-* createAccount(View v)
-* Method for creating account and inputting user input information into user DB
-*
-*
-*/
-    public void createAccount(View v){
-        //For when the actual text boxes can be typed in
-         user.setUsername(name.getText().toString());
-         user.setPass(pass.getText().toString());
-         mUserDAO.insert(user);
+    //Button for logging in
+    public void login(View v){
+        name = binding.user.getText().toString();
+        pass = binding.pass.getText().toString();
+        if(verifyAccountLogin(name, pass)){
+            userId = userDao.getUserByUsername(name).getId();
+            Intent intent = new Intent(getApplicationContext(), ModifyAccount.class);
+            intent.putExtra(USER_ID_KEY, userId);
+            startActivity(intent);
+        }
 
+    }
+    /**
+     * createAccount(View v)
+     * Takes you to new activity called createAccount when clicking on the createAccount button
+     */
+    public void createAccount(View v){
+
+        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+        startActivity(intent);
+
+    }
+
+    private boolean verifyAccountLogin(String name, String pass){
+        User user = userDao.getUserByUsername(name);
+
+        user = userDao.getUserByUsername(name);
+        if (user == null){
+            Toast.makeText(this, name + " not found", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(!user.getPass().equals(pass)){
+            Toast.makeText(this, "Incorrect account name or password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void getDatabase(){
+        userDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build()
+                .getUserDao();
     }
 }

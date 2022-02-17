@@ -23,7 +23,7 @@ public class ModifyAccount extends AppCompatActivity {
     private String username;
     private String password;
     private String passwordConfirm;
-    private User user;
+    private User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,7 @@ public class ModifyAccount extends AppCompatActivity {
                 if (verifyAccount()){
                     updateUser();
                     //intent to kick user back to login once they change account info
-                    //TODO: Change CreateAccount.class to LoginActivity once implemented
-                    Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
             }

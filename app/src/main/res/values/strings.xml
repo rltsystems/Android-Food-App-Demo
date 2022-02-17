@@ -15,4 +15,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="retype_password">Retype Password</string>
     <string name="submit">Submit</string>
+    <string name="modify_account">Modify Account</string>
+    <string name="app_logo_white_purple_transparent">app logo, white purple, transparent</string>
+
 </resources>

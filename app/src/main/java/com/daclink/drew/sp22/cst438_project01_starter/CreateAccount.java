@@ -46,6 +46,8 @@ public class CreateAccount extends AppCompatActivity {
 
                 if (verifyAccount()){
                     createUser();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -73,8 +75,6 @@ public class CreateAccount extends AppCompatActivity {
     public void createUser(){
         User user = new User(username, password);
         userDao.insert(user);
-        //TODO: Remove line once login is implemented, no need to store id normally at createUser()
-        userId = userDao.getUserByUsername(username).getId();
     }
 
     private void getDatabase(){
