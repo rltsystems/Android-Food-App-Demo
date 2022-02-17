@@ -1,5 +1,6 @@
 package com.daclink.drew.sp22.cst438_project01_starter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.daclink.drew.sp22.cst438_project01_starter.Api.EdamamApi;
@@ -9,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +25,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,50 +37,89 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    UserDao mUserDAO;
-    User user = new User();
+    private UserDao userDao;
 
-    Button createAccBtn;
-    Button loginBtn;
+    private Button createAccBtn;
+    private Button loginBtn;
 
-    EditText pass;
-    EditText name;
+    private String pass;
+    private String name;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
-                .allowMainThreadQueries()
-                .build()
-                .getUserDao();
+//        View view = new View(content_main);
+        setContentView(binding.getRoot());
 
-        createAccBtn = view.findViewById(R.id.create_acc);
-        name = view.findViewById(R.id.user);
-        pass = view.findViewById((R.id.pass));
-        loginBtn = view.findViewById(R.id.login);
+        getDatabase();
+
+//        createAccBtn = findViewById(R.id.create_acc);
+//        name = findViewById(R.id.user).toString();
+//        pass = findViewById((R.id.pass)).toString();
+//        loginBtn = findViewById(R.id.login);
 
     }
 
         //Button for logging in
-//    public void login(View v){
-//
-//        user.setUsername(name.getText().toString());
-//
-//    }
-/*
-* createAccount(View v)
-* Method for creating account and inputting user input information into user DB
-*
-*
-*/
-    public void createAccount(View v){
-        //For when the actual text boxes can be typed in
-         user.setUsername(name.getText().toString());
-         user.setPass(pass.getText().toString());
-         mUserDAO.insert(user);
+    public void login(View v){
+        name = binding.user.getText().toString();
+        pass = binding.pass.getText().toString();
+        if(verifyAccountLogin(name, pass)){
+            Toast.makeText(getApplicationContext(), "SUCCESSFUL LOGIn", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+            startActivity(intent);
+        }
 
     }
+/**
+* createAccount(View v)
+* Takes you to new activity called createAccount when clicking on the createAccount button
+*/
+    public void createAccount(View v){
+
+        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+        startActivity(intent);
+
+    }
+
+    private boolean verifyAccountLogin(String name, String pass){
+        User user = userDao.getUserByUsername(name);
+        Log.i("WTF", name);
+
+        user = userDao.getUserByUsername(name);
+        if (user == null){
+            Log.i("WTF", "USER NULL");
+            Toast.makeText(this, name + " not found", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(!user.getPass().equals(pass)){
+            Log.i("WTF", "PASS WRONG");
+            Toast.makeText(this, "Incorrect account name or password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+//        user = userDao.getUserByUsername(username);
+//
+//        if (user.getUsername() != username){
+//            Toast.makeText(this, "Incorrect account name or password", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//        else if(user.getPass() != password){
+//            Toast.makeText(this, "Incorrect account name or password", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+
+        return true;
+    }
+
+    private void getDatabase(){
+        userDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build()
+                .getUserDao();
+    }
+
 }
+

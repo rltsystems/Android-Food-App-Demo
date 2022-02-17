@@ -3,6 +3,7 @@ package com.daclink.drew.sp22.cst438_project01_starter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -33,12 +34,14 @@ public class CreateAccount extends AppCompatActivity {
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                username = binding.editTextUsername.toString();
-                password = binding.editTextPassword.toString();
-                passwordConfirm = binding.editTextPasswordConfirm.toString();
+                username = binding.editTextUsername.getText().toString();
+                password = binding.editTextPassword.getText().toString();
+                passwordConfirm = binding.editTextPasswordConfirm.getText().toString();
 
                 if (verifyAccount(username, password)){
                     createUser(username, password);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
