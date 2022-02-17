@@ -3,6 +3,7 @@ package com.daclink.drew.sp22.cst438_project01_starter.db;
 import android.text.Html;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.daclink.drew.sp22.cst438_project01_starter.Api.Result;
@@ -31,12 +32,24 @@ public class Recipe {
     private int readyInMinutes;
     private int servings;
 
-
+    @Ignore
     public Recipe(String recipeName, Double totalCalories, String recipeDescription) {
         this.recipeName = recipeName;
         this.totalCalories = totalCalories;
         this.recipeDescription = recipeDescription;
     }
+
+    public Recipe(String recipeName, int servings, int readyInMinutes, String recipeDescription,
+                  String sourceName, String sourceUrl) {
+        this.recipeName = recipeName;
+        this.servings = servings;
+        this.readyInMinutes= readyInMinutes;
+        this.recipeDescription = recipeDescription;
+        this.sourceName = sourceName;
+        this.sourceUrl = sourceUrl;
+    }
+
+
 
     // create a recipe from a search result
     public Recipe(Result searchresult) {

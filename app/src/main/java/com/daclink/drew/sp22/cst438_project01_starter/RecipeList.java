@@ -120,7 +120,7 @@ public class RecipeList extends AppCompatActivity {
      * Places a call to the API using the user's input as a query
      */
     public void searchRecipes(){
-        int SEARCH_RESULT_LIMIT = 20;
+        int SEARCH_RESULT_LIMIT = 3;
         ApiKey keyboi = new ApiKey();
         String recipeSearchBaseString = "https://api.spoonacular.com";
         SpoontacularSearchAPI spoonSearch;
@@ -157,9 +157,10 @@ public class RecipeList extends AppCompatActivity {
                     for (int i = 0; i < test.results.size();i++){
                         Recipe newRec = new Recipe(test.results.get(i));
                         user.getRecipes().add(newRec);
+                        adapter.notifyItemInserted(user.getRecipes().size() - 1);
                     }
                     userDao.insert(user);
-                    adapter.notifyDataSetChanged();
+                    //adapter.notifyDataSetChanged();
                 }
             }
 
