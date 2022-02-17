@@ -116,13 +116,18 @@ public class RecipeList extends AppCompatActivity {
         userDao.insert(user);
     }
 
+    /**
+     * Places a call to the API using the user's input as a query
+     */
     public void searchRecipes(){
-        TextInputEditText keywordEditText = binding.foodQueryBox;
-        String keyword = keywordEditText.getEditableText().toString();
         int SEARCH_RESULT_LIMIT = 20;
         ApiKey keyboi = new ApiKey();
         String recipeSearchBaseString = "https://api.spoonacular.com";
         SpoontacularSearchAPI spoonSearch;
+
+        // getting the text from the search box
+        TextInputEditText keywordEditText = binding.foodQueryBox;
+        String keyword = keywordEditText.getEditableText().toString();
 
         // okhttp3 for debugging and log
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -135,7 +140,6 @@ public class RecipeList extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         spoonSearch = retrofit.create(SpoontacularSearchAPI.class);
 
         Call<RecipeResponse> call = spoonSearch.getRecipes(keyword, keyboi.getKey(),
