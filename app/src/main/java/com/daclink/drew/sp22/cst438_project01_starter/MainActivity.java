@@ -7,21 +7,27 @@ import com.daclink.drew.sp22.cst438_project01_starter.Api.EdamamApi;
 import com.daclink.drew.sp22.cst438_project01_starter.Api.Post;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
+import androidx.room.Room;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.daclink.drew.sp22.cst438_project01_starter.databinding.ActivityMainBinding;
+import com.daclink.drew.sp22.cst438_project01_starter.db.User;
+import com.daclink.drew.sp22.cst438_project01_starter.db.AppDatabase;
+import com.daclink.drew.sp22.cst438_project01_starter.db.UserDao;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,35 +40,32 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    UserDao mUserDAO;
+    User user = new User();
+    Button createAccBtn;
+    Button loginBtn;
 
+    EditText pass;
+    EditText name;
     //---API TESTING ONLY---
     // private TextView textViewResult;
     //---API TESTING ONLY---
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
+        mUserDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries()
+                .build()
+                .getUserDao();
 
-        //Temporary intent just to test Create/Modify Account
-        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
-        startActivity(intent);
-
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        createAccBtn = view.findViewById(R.id.create_acc);
+        name = view.findViewById(R.id.user);
+        pass = view.findViewById((R.id.pass));
+        loginBtn = view.findViewById(R.id.login);
 
     }
 

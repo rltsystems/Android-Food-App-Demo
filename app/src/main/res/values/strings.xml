@@ -13,6 +13,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="retype_password">Retype Password</string>
     <string name="submit">Submit</string>
-    <string name="modify_account">Modify Account</string>
 </resources>
