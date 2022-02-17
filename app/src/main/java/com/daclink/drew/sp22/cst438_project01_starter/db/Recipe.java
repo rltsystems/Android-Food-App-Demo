@@ -21,8 +21,8 @@ public class Recipe {
     private String recipeDescription;
     public String carbs;
     public String fat;
-    //public String image;
-    //public String imageType;
+    public String image;
+    public String imageType;
     public String protein;
     public String sourceName;
     public String sourceUrl;
@@ -97,10 +97,18 @@ public class Recipe {
     }
 
     public String displayRecipeBar(){
-        return (this.recipeName + "\nSource: " + this.sourceName);
+        return (this.recipeName + "\nSource: " + this.sourceName + "\n" + this.sourceUrl);
     }
 
     public String displayRecipeDescripInstruct(){
         return (Html.fromHtml(this.recipeDescription) + "\n\n" + Html.fromHtml(this.instructions));
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

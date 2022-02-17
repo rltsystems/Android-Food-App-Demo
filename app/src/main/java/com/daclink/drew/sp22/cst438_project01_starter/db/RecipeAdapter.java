@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.daclink.drew.sp22.cst438_project01_starter.R;
 
 import java.util.List;
@@ -61,8 +63,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         // made this a little more neat :)
         String s = recipe.displayRecipeBar();
-        //String s = recipe.getRecipeName() + "\nTotal Calories: " + recipe.getTotalCalories();
         textView.setText(s);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
