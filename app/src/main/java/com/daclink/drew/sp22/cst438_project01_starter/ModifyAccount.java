@@ -8,44 +8,44 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.daclink.drew.sp22.cst438_project01_starter.databinding.ActivityCreateAccountBinding;
-import com.daclink.drew.sp22.cst438_project01_starter.databinding.ActivityMainBinding;
 import com.daclink.drew.sp22.cst438_project01_starter.databinding.ActivityModifyAccountBinding;
 import com.daclink.drew.sp22.cst438_project01_starter.db.AppDatabase;
 import com.daclink.drew.sp22.cst438_project01_starter.db.User;
 import com.daclink.drew.sp22.cst438_project01_starter.db.UserDao;
 
-public class CreateAccount extends AppCompatActivity {
+public class ModifyAccount extends AppCompatActivity {
 
     private static final String USER_ID_KEY = "userIdKey";
 
-    private ActivityCreateAccountBinding binding;
+    private ActivityModifyAccountBinding binding;
     private UserDao userDao;
 
     private String username;
     private String password;
     private String passwordConfirm;
-    private User user;
-    private int userId;
+    private User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
-        binding = ActivityCreateAccountBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_modify_account);
+        binding = ActivityModifyAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getDatabase();
+        int userId = getIntent().getIntExtra(USER_ID_KEY, -1);
+        user = userDao.getUserById(userId);
 
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+        binding.submitUserChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                username = binding.editTextUsername.getText().toString();
-                password = binding.editTextPassword.getText().toString();
-                passwordConfirm = binding.editTextPasswordConfirm.getText().toString();
+                username = binding.newUsername.getText().toString();
+                password = binding.newPassword.getText().toString();
+                passwordConfirm = binding.confirmNewPassword.getText().toString();
 
                 if (verifyAccount()){
-                    createUser();
+                    updateUser();
+                    //intent to kick user back to login once they change account info
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -55,12 +55,13 @@ public class CreateAccount extends AppCompatActivity {
 
     /**
      * This method checks to make sure an account with the inputted username isn't in the DB already.
-     * Also checks to make password fields match
+     * Also checks to make password fields match. Nearly the same method as CreateAccount just to make sure user
+     * doesn't try to switch their name to something that already exists
      * @return boolean Returns if account is unique and passwords match
      */
     private boolean verifyAccount(){
-        user = userDao.getUserByUsername(username);
-        if (user != null){
+        User checkUser = userDao.getUserByUsername(username);
+        if (checkUser != null){
             Toast.makeText(this, "Account with username " + username + " already exists", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -72,8 +73,9 @@ public class CreateAccount extends AppCompatActivity {
         return true;
     }
 
-    public void createUser(){
-        User user = new User(username, password);
+    public void updateUser(){
+        user.setUsername(username);
+        user.setPass(password);
         userDao.insert(user);
     }
 
