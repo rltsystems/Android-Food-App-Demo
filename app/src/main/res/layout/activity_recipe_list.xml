@@ -26,11 +26,21 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_box_hint"
+        android:id="@+id/foodQueryBox"
+        app:layout_constraintBottom_toTopOf="@id/addRecipeBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
     <Button
         android:id="@+id/addRecipeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_recipes"
+        android:text="@string/foodora"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

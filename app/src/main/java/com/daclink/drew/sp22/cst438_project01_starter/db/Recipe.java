@@ -97,7 +97,7 @@ public class Recipe {
     }
 
     public String displayRecipeBar(){
-        return (this.recipeName + "\nSource: " + this.sourceName + "\n" + this.sourceUrl);
+        return (this.recipeName + "\n\nSource: " + this.sourceName + "\n\n" + this.sourceUrl);
     }
 
     public String displayRecipeDescripInstruct(){

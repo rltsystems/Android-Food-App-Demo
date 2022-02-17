@@ -21,6 +21,7 @@ import com.daclink.drew.sp22.cst438_project01_starter.db.Recipe;
 import com.daclink.drew.sp22.cst438_project01_starter.db.RecipeAdapter;
 import com.daclink.drew.sp22.cst438_project01_starter.db.User;
 import com.daclink.drew.sp22.cst438_project01_starter.db.UserDao;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
@@ -78,20 +79,15 @@ public class RecipeList extends AppCompatActivity {
             }
         });
 
-        // IM SWIPING THIS FOR THE SEARCH TEST
+        TextInputEditText keywordEditText = binding.foodQueryBox;
         Button addRecipe = binding.addRecipeBtn;
 
-        /*addRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addRecipes();
-            }
-        });*/
+        String keyword = keywordEditText.getEditableText().toString();
 
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchRecipes("linguini");
+                searchRecipes("keyword");
             }
         });
     }
