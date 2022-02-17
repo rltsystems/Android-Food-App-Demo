@@ -19,9 +19,15 @@ public interface UserDao {
     @Delete
     void deleteUser(User user);
 
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " ORDER BY id DESC")
+    List<User> getUsers();
+
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE id = :id")
     User getUserById(int id);
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username = :username")
     User getUserByUsername(String username);
+
+    @Query("SELECT * FROM " + AppDatabase.RECIPE_TABLE + " ORDER BY recipeId DESC")
+    List<Recipe> getRecipes();
 }

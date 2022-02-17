@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST438_Project01_Starter">
         <activity
-            android:name=".ModifyAccount"
+            android:name=".CreateAccount"
             android:exported="false" />
         <activity
-            android:name=".CreateAccount"
+            android:name=".RecipeList"
+            android:exported="false" />
+        <activity
+            android:name=".MainPage"
+            android:exported="false" />
+        <activity
+            android:name=".ModifyAccount"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

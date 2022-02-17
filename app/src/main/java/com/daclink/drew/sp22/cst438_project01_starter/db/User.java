@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Entity(tableName = "users")
@@ -17,6 +18,7 @@ public class User {
 
     //recipeCount will be a test value to validate database functions until we implement recipes
     private int recipeCount;
+    private ArrayList<Recipe> recipes;
 
     @Ignore
     public User(){ }
@@ -26,6 +28,8 @@ public class User {
         this.username = username;
         this.pass = pass;
         this.recipeCount = recipeCount;
+
+        recipes = new ArrayList<>();
     }
 
     @Ignore
@@ -33,12 +37,16 @@ public class User {
         this.username = username;
         this.pass = pass;
         this.recipeCount = recipeCount;
+
+        recipes = new ArrayList<>();
     }
 
     @Ignore
     public User(String username, String pass){
         this.username = username;
         this.pass = pass;
+
+        recipes = new ArrayList<>();
     }
 
     public int getId() {
@@ -71,6 +79,14 @@ public class User {
 
     public void setRecipeCount(int recipeCount) {
         this.recipeCount = recipeCount;
+    }
+
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(ArrayList<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     @Override
