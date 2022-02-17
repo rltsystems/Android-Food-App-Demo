@@ -11,7 +11,8 @@ public interface SpoontacularSearchAPI {
     //@Headers("Accept-Encoding: gzip")
     @GET("/recipes/complexSearch")
     Call<RecipeResponse> getRecipes(
-            @Query("q") String q,
+            @Query("query") String q,
             @Query("apiKey") String app_key,
+            @Query("addRecipeInformation") boolean extraInfo,
             @Query("number") int resultMax);
 }

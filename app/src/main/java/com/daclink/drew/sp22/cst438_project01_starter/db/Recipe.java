@@ -1,5 +1,7 @@
 package com.daclink.drew.sp22.cst438_project01_starter.db;
 
+import android.text.Html;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -22,6 +24,9 @@ public class Recipe {
     //public String image;
     //public String imageType;
     public String protein;
+    public String sourceName;
+    public String sourceUrl;
+    private String instructions;
 
 
     public Recipe(String recipeName, Double totalCalories, String recipeDescription) {
@@ -34,9 +39,13 @@ public class Recipe {
     public Recipe(Result searchresult) {
         this.recipeName = searchresult.getTitle();
         this.totalCalories = (searchresult.getCalories() * 1.0);
+        this.recipeDescription = searchresult.getSummary();
         this.carbs = searchresult.getCarbs();
         this.fat = searchresult.getFat();
         this.protein = searchresult.getProtein();
+        this.sourceUrl = searchresult.getSourceUrl();
+        this.sourceName = searchresult.getSourceName();
+        this.instructions = searchresult.getInstructions();
     }
 
     public int getRecipeId() {
@@ -71,11 +80,27 @@ public class Recipe {
         this.recipeDescription = recipeDescription;
     }
 
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
     public void resultToRecipe(Result searchresult){
         this.recipeName = searchresult.getTitle();
         this.totalCalories = (searchresult.getCalories() * 1.0);
         this.carbs = searchresult.getCarbs();
         this.fat = searchresult.getFat();
         this.protein = searchresult.getProtein();
+    }
+
+    public String displayRecipeBar(){
+        return (this.recipeName + "\nSource: " + this.sourceName);
+    }
+
+    public String displayRecipeDescripInstruct(){
+        return (Html.fromHtml(this.recipeDescription) + "\n\n" + Html.fromHtml(this.instructions));
     }
 }

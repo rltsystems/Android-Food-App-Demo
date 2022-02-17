@@ -91,7 +91,7 @@ public class RecipeList extends AppCompatActivity {
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchRecipes("beef");
+                searchRecipes("linguini");
             }
         });
     }
@@ -143,7 +143,8 @@ public class RecipeList extends AppCompatActivity {
 
         spoonSearch = retrofit.create(SpoontacularSearchAPI.class);
 
-        Call<RecipeResponse> call = spoonSearch.getRecipes(query, keyboi.getKey(), SEARCH_RESULT_LIMIT);
+        Call<RecipeResponse> call = spoonSearch.getRecipes(query, keyboi.getKey(),
+                true, SEARCH_RESULT_LIMIT);
 
         call.enqueue(new Callback<RecipeResponse>(){
             @Override
@@ -159,6 +160,7 @@ public class RecipeList extends AppCompatActivity {
                         user.getRecipes().add(newRec);
                     }
                     userDao.insert(user);
+                    adapter.notifyDataSetChanged();
                 }
             }
 

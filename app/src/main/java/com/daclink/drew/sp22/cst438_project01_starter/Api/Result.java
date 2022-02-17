@@ -30,6 +30,18 @@ public class Result {
     @SerializedName("protein")
     @Expose
     public String protein;
+    @SerializedName("summary")
+    @Expose
+    public String summary;
+    @SerializedName("sourceUrl")
+    @Expose
+    public String sourceUrl;
+    @SerializedName("sourceName")
+    @Expose
+    public String sourceName;
+    @SerializedName("instructions")
+    @Expose
+    public String instructions;
 
     public int getId() {
         return id;
@@ -93,6 +105,22 @@ public class Result {
 
     public void setProtein(String protein) {
         this.protein = protein;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public String getInstructions() {
+        return instructions;
     }
 
     @Override
