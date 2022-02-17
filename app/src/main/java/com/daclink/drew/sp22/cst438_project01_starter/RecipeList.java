@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class RecipeList extends AppCompatActivity {
 
-    private static final String USER_ID_KEY = "com.example.storefront.userIdKey";
+    private static final String USER_ID_KEY = "userIdKey";
     private RecyclerView rvRecipes;
     private RecipeAdapter adapter;
 
@@ -46,7 +46,7 @@ public class RecipeList extends AppCompatActivity {
 
         rvRecipes = binding.rvRecipes;
         //TODO: Change the 1 to mUserId
-        adapter = new RecipeAdapter(getApplicationContext(), 1, 0);
+        adapter = new RecipeAdapter(getApplicationContext(), mUserId, 0);
 
         rvRecipes.setAdapter(adapter);
 
@@ -76,7 +76,7 @@ public class RecipeList extends AppCompatActivity {
     }
 
     public void refreshView() { //TODO: Change the 1 to userId
-        RecipeAdapter adapter = new RecipeAdapter(RecipeList.this, 1, mSecondClick);
+        RecipeAdapter adapter = new RecipeAdapter(RecipeList.this, mUserId, mSecondClick);
         rvRecipes.setAdapter(adapter);
 
     }
@@ -92,7 +92,7 @@ public class RecipeList extends AppCompatActivity {
     private void addRecipes(){
         User user = new User();
         //TODO: change the 1 to userId;
-        user = userDao.getUserById(1);
+        user = userDao.getUserById(mUserId);
         Recipe recipeOne = new Recipe("Black Miso Cod", 800.0, "A classic Japanese recipe for black cod that makes an easy, elegant dinner for guests or a quick main dish you can prep over the weekend.");
         Recipe recipeTwo = new Recipe("Miso-Sesame Shrimp & Bacon Ramen", 830.0, "Ramen, topped with crispy pan seared shrimp and added bacon bits to really bring out the flavor. As well as a side of hand made garlic oil to change the flavor of the whole dish");
         Recipe recipeThree = new Recipe("Creamy Rigatoni with pork sausage", 980.0, "Aldente rigatoni covered in a rich sauce made from parmesan cheese and cream cheese, mixed together with steamed broccoli florets and pan cooked chicken");

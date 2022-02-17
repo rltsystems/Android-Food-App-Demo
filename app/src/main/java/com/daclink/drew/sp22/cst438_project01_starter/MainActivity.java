@@ -3,6 +3,7 @@ package com.daclink.drew.sp22.cst438_project01_starter;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.daclink.drew.sp22.cst438_project01_starter.databinding.ActivityCreateAccountBinding;
 import com.daclink.drew.sp22.cst438_project01_starter.db.Recipe;
 
 import androidx.annotation.Nullable;
@@ -39,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         getDatabase();
         predefinedUser();
-        Intent intent = new Intent(getApplicationContext(), RecipeList.class);
-        intent.putExtra(USER_ID_KEY, userId);
-        startActivity(intent);
     }
 
     public void login(View v){
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         pass = binding.pass.getText().toString();
         if(verifyAccountLogin(name, pass)){
             userId = userDao.getUserByUsername(name).getId();
-            Intent intent = new Intent(getApplicationContext(), ModifyAccount.class);
+            Intent intent = new Intent(getApplicationContext(), MainPage.class);
             intent.putExtra(USER_ID_KEY, userId);
             startActivity(intent);
         }
@@ -106,4 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 .build()
                 .getUserDao();
     }
+
+    @Override
+    public void onBackPressed(){}
 }

@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         getDatabase(context);
 
         //TODO: Implement filters?
+        mUser = new User();
+        Log.i("TEST", String.valueOf(userId));
         mUser = mUserDAO.getUserById(userId);
+
         recipes = mUser.getRecipes();
 
         this.context = context;
