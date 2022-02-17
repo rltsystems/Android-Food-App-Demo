@@ -46,11 +46,6 @@ public class CreateAccount extends AppCompatActivity {
 
                 if (verifyAccount()){
                     createUser();
-                    //Temporary intent just to test Modify Account
-                    Intent intent = new Intent(getApplicationContext(), ModifyAccount.class);
-                    // This should be removed once login is made
-                    intent.putExtra(USER_ID_KEY, userId);
-                    startActivity(intent);
                 }
             }
         });
