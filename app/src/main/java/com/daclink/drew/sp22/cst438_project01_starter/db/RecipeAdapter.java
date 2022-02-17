@@ -16,7 +16,6 @@ import com.daclink.drew.sp22.cst438_project01_starter.R;
 
 import java.util.List;
 
-//TODO: WRITE TESTS PLS
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
 
     private List<Recipe> recipes;
@@ -59,18 +58,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO: The commented code is for the list of savable recipes
                 AlertDialog.Builder alert = new AlertDialog.Builder(textView.getContext());
-                alert.setTitle("Save Recipe: " + recipe.getRecipeName());
-                alert.setMessage("Description: " + recipe.getRecipeDescription() + "\n\nWould you like to save this recipe?");
+//                alert.setTitle("Save Recipe: " + recipe.getRecipeName());
+                alert.setMessage("Description: " + recipe.getRecipeDescription() /*(+ "\n\nWould you like to save this recipe?"*/);
 
-                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        saveRecipe(recipe);
-                    }
-                });
-
-                alert.setNegativeButton("No", null);
+//                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        saveRecipe(recipe);
+//                    }
+//                });
+//
+//                alert.setNegativeButton("No", null);
                 alert.show();
             }
         });

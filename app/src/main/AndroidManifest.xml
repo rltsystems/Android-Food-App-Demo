@@ -15,6 +15,9 @@
             android:name=".CreateAccount"
             android:exported="false" />
         <activity
+            android:name=".RecipeList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
