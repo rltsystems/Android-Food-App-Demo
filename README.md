@@ -21,3 +21,15 @@ The Edamam B2B API is accessed by sending HTTPS requests on specific URLs. The E
 ## Resources 
 - API [Link](https://developer.edamam.com/edamam-docs-recipe-api).
 
+## App Workflow
+1. User Opens App
+2. Create a user
+3. Login with user
+4. Go to My Recipes
+5. Tap on Add Recipes --> Swipe top down to refresh
+6. Square button to minimize app
+7. Re-open app, select My Recipes --> See that recipes are still there
+8. Tap on My Account
+9. Update Password
+10. Logout of Account
+11. Login with new Password
