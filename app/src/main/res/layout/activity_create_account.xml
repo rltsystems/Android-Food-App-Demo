@@ -69,8 +69,8 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="62dp"
         android:text="@string/submit"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
