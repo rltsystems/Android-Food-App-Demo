@@ -1,6 +1,3 @@
-
-
-
 # Group5_CST438_Project01
 ![](https://i.ibb.co/hLM7CSn/fcode.png)
 ## Team Members
@@ -33,3 +30,8 @@ The Spoonacular API is accessed by sending HTTPS requests on specific URLs. The 
 9. Update Password
 10. Logout of Account
 11. Login with new Password
+
+## App Preview
+**V1 (Pre-API)**
+![](https://user-images.githubusercontent.com/10646650/154596100-b9e37e58-7bcc-4b31-b434-c6467b1d46c7.png)
+
