@@ -120,7 +120,7 @@ public class RecipeList extends AppCompatActivity {
      * Places a call to the API using the user's input as a query
      */
     public void searchRecipes(){
-        int SEARCH_RESULT_LIMIT = 3;
+        int SEARCH_RESULT_LIMIT = 5;
         ApiKey keyboi = new ApiKey();
         String recipeSearchBaseString = "https://api.spoonacular.com";
         SpoontacularSearchAPI spoonSearch;
