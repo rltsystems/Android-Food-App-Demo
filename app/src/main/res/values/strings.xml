@@ -18,5 +18,7 @@
     <string name="modify_account">Modify Account</string>
     <string name="app_logo_white_purple_transparent">app logo, white purple, transparent</string>
     <string name="add_recipes">Add Recipes</string>
+    <string name="foodora">Foodora!</string>
+    <string name="search_box_hint">What are you hungry for?</string>
 
 </resources>

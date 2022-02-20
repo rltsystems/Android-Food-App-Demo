@@ -6,13 +6,16 @@ import androidx.room.Room;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.daclink.drew.sp22.cst438_project01_starter.R;
 
 import java.util.List;
@@ -57,15 +60,18 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         Recipe recipe = recipes.get(position);
 
         TextView textView = holder.recipeInfo;
-        String s = recipe.getRecipeName() + ", Total Calories: " + recipe.getTotalCalories();
+
+        // made this a little more neat :)
+        String s = recipe.displayRecipeBar();
         textView.setText(s);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: The commented code is for the list of savable recipes
                 AlertDialog.Builder alert = new AlertDialog.Builder(textView.getContext());
 //                alert.setTitle("Save Recipe: " + recipe.getRecipeName());
-                alert.setMessage("Description: " + recipe.getRecipeDescription() /*(+ "\n\nWould you like to save this recipe?"*/);
+                alert.setMessage("Description: " + Html.fromHtml(recipe.getRecipeDescription()) /*(+ "\n\nWould you like to save this recipe?"*/);
 
 //                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 //                    @Override

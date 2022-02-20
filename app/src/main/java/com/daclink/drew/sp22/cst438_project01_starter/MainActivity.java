@@ -70,12 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // redid the predefined recipes to match the format of new recipes
     public void predefinedUser(){
         if(userDao.getUserByUsername("demoUser") == null){
             User user = new User("demoUser","123");
-            Recipe recipeOne = new Recipe("Fish Tacos", 1600.0, "Tacos with fish i guess");
-            Recipe recipeTwo = new Recipe("Ramen", 2300.0, "Tonkotsu ramen");
-            Recipe recipeThree = new Recipe("Sushi", 800.0, "California Roll");
+            Recipe recipeOne = new Recipe("Fish Tacos", 6, 35,
+                    "Tacos with fish i guess", "Food.web", "www.examplesite.org");
+            Recipe recipeTwo = new Recipe("Ramen", 2, 60, "Tonkotsu ramen", "Food.web", "www.examplesite.org");
+            Recipe recipeThree = new Recipe("Sushi", 4, 45, "California Roll", "Food.web", "www.examplesite.org");
             user.getRecipes().add(recipeOne);
             user.getRecipes().add(recipeTwo);
             user.getRecipes().add(recipeThree);
