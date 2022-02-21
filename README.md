@@ -15,6 +15,24 @@ The foodora app allows users to find, save, and edit recipes, as well as publish
 
 We will be using the [Spoonacular API](https://spoonacular.com/food-api). to search for Recipes
 The Spoonacular API is accessed by sending HTTPS requests on specific URLs. The Spoonacular Recipe Search API allows us to search through millions of web recipes and integrate this information into our app.
+
+### Note on API Keys
+Developers wishing to use this as a base for their own work will need to add an ApiKey class with their own key from Spoontacualr, as shown below:
+```
+package com.daclink.drew.sp22.cst438_project01_starter.Api;
+
+public class ApiKey {
+    private String key;
+
+    public ApiKey(){
+        key = "YOUR_KEY_HERE";
+    }
+
+    public String getKey() {
+        return key;
+    }
+}
+```
 ## Resources 
 - API [Link](https://spoonacular.com/food-api/docs).
 
