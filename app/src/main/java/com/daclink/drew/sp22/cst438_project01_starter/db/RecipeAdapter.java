@@ -28,12 +28,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private User mUser;
     private Context context;
 
-    private int mSortNum;
-
-    public RecipeAdapter(Context context, int userId, int sortNum){
+    public RecipeAdapter(Context context, int userId){
         getDatabase(context);
 
-        //TODO: Implement filters?
         mUser = new User();
         Log.i("TEST", String.valueOf(userId));
         mUser = mUserDAO.getUserById(userId);

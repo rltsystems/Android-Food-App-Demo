@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getDatabase();
-        predefinedUser();
     }
 
     public void login(View v){
@@ -70,24 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // redid the predefined recipes to match the format of new recipes
-    public void predefinedUser(){
-        if(userDao.getUserByUsername("demoUser") == null){
-            User user = new User("demoUser","123");
-            Recipe recipeOne = new Recipe("Fish Tacos", 6, 35,
-                    "Tacos with fish i guess", "Food.web", "www.examplesite.org");
-            Recipe recipeTwo = new Recipe("Ramen", 2, 60, "Tonkotsu ramen", "Food.web", "www.examplesite.org");
-            Recipe recipeThree = new Recipe("Sushi", 4, 45, "California Roll", "Food.web", "www.examplesite.org");
-            user.getRecipes().add(recipeOne);
-            user.getRecipes().add(recipeTwo);
-            user.getRecipes().add(recipeThree);
-            userDao.insert(user);
-            userId = userDao.getUserByUsername("demoUser").getId();
-        }
-    }
-
+    /**
+     * Returns if the input username and password are
+     * the right information for a given account
+     * @param name the passed in username from login screen
+     * @param pass input password
+     * @return true if login info is valid, false if username not found or wrong password
+     */
     private boolean verifyAccountLogin(String name, String pass){
-        User user = userDao.getUserByUsername(name);
 
         user = userDao.getUserByUsername(name);
         if (user == null){
@@ -102,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Basic method to initialize the database
+     */
     private void getDatabase() {
         userDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()

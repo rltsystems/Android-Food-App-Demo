@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.daclink.drew.sp22.cst438_project01_starter.databinding.MainPageBinding;
+import com.daclink.drew.sp22.cst438_project01_starter.db.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,5 +50,15 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.myRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SavedRecipes.class);
+                intent.putExtra(USER_ID_KEY, userId);
+                startActivity(intent);
+            }
+        });
+
     }
 }

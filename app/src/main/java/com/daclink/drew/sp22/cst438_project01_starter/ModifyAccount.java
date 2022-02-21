@@ -41,7 +41,6 @@ public class ModifyAccount extends AppCompatActivity {
         binding.submitUserChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //username = binding.newUsername.getText().toString();
                 password = binding.newPassword.getText().toString();
                 passwordConfirm = binding.confirmNewPassword.getText().toString();
 
@@ -76,27 +75,19 @@ public class ModifyAccount extends AppCompatActivity {
     }
 
     /**
-     * This method checks to make sure an account with the inputted username isn't in the DB already.
-     * Also checks to make password fields match. Nearly the same method as CreateAccount just to make sure user
-     * doesn't try to switch their name to something that already exists
-     * @return boolean Returns if account is unique and passwords match
+     * Checks to make password fields match. Nearly the same method as CreateAccount but only checks
+     * the password fields against each other
+     * @return boolean Returns if passwords match
      */
     private boolean verifyAccount(){
-        User checkUser = userDao.getUserByUsername(username);
-        if (checkUser != null){
-            Toast.makeText(this, "Account with username " + username + " already exists", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if(!password.equals(passwordConfirm)){
+        if(!password.equals(passwordConfirm)){
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return false;
         }
-
         return true;
     }
 
     public void updateUser(){
-        //user.setUsername(username);
         user.setPass(password);
         userDao.insert(user);
     }
