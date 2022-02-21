@@ -33,6 +33,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Activity for the recyclerview that displays information returned from API calls
+ */
 public class RecipeList extends AppCompatActivity {
 
     private static final String USER_ID_KEY = "userIdKey";
@@ -43,8 +46,6 @@ public class RecipeList extends AppCompatActivity {
     private UserDao userDao;
     private int mUserId;
     private ActivityRecipeListBinding binding;
-
-    private int mSecondClick;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -58,8 +59,7 @@ public class RecipeList extends AppCompatActivity {
         mUserId = getIntent().getIntExtra(USER_ID_KEY,-1);
 
         rvRecipes = binding.rvRecipes;
-        //TODO: Change the 1 to mUserId
-        adapter = new RecipeAdapter(getApplicationContext(), mUserId, 0);
+        adapter = new RecipeAdapter(getApplicationContext(), mUserId);
 
         rvRecipes.setAdapter(adapter);
 
@@ -89,8 +89,11 @@ public class RecipeList extends AppCompatActivity {
         });
     }
 
-    public void refreshView() { //TODO: Change the 1 to userId
-        RecipeAdapter adapter = new RecipeAdapter(RecipeList.this, mUserId, mSecondClick);
+    /**
+     * method that refreshes the recyclerview when user swipes to refresh
+     */
+    public void refreshView() {
+        RecipeAdapter adapter = new RecipeAdapter(RecipeList.this, mUserId);
         rvRecipes.setAdapter(adapter);
 
     }
@@ -101,19 +104,6 @@ public class RecipeList extends AppCompatActivity {
                 .fallbackToDestructiveMigration()
                 .build()
                 .getUserDao();
-    }
-
-    private void addRecipes(){
-        User user = new User();
-        //TODO: change the 1 to userId;
-        user = userDao.getUserById(mUserId);
-        Recipe recipeOne = new Recipe("Black Miso Cod", 800.0, "A classic Japanese recipe for black cod that makes an easy, elegant dinner for guests or a quick main dish you can prep over the weekend.");
-        Recipe recipeTwo = new Recipe("Miso-Sesame Shrimp & Bacon Ramen", 830.0, "Ramen, topped with crispy pan seared shrimp and added bacon bits to really bring out the flavor. As well as a side of hand made garlic oil to change the flavor of the whole dish");
-        Recipe recipeThree = new Recipe("Creamy Rigatoni with pork sausage", 980.0, "Aldente rigatoni covered in a rich sauce made from parmesan cheese and cream cheese, mixed together with steamed broccoli florets and pan cooked chicken");
-        user.getRecipes().add(recipeOne);
-        user.getRecipes().add(recipeTwo);
-        user.getRecipes().add(recipeThree);
-        userDao.insert(user);
     }
 
     /**
@@ -149,7 +139,7 @@ public class RecipeList extends AppCompatActivity {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                 if(response.body() != null){
-                    Log.d("SUCC","onResponse: We did it bois");
+                    Log.d("API","onResponse: We did it bois");
                     RecipeResponse test = response.body();
                     // THIS IS ONLY FOR INITIAL SHOWING AND TESTING !!!!!!!!!!!!
                     User user = new User();
