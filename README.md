@@ -11,6 +11,7 @@
 ![](https://i.ibb.co/8g7Y9HW/foodora-bw-sm.jpg)
 
 The foodora app allows users to find, save, and edit recipes, as well as publish recipes under their own user account.
+Built with Android Studio, Gradle, Room Persistence Library, SQLite
 ## API Info
 
 We will be using the [Spoonacular API](https://spoonacular.com/food-api). to search for Recipes
